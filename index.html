@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> -->
+	<!-- <script src="index.js"></script> -->
+	<script src="vue.min.js"></script>
+	</head>
+<body>
+<style>
+	.infor_left , .infor_right{
+		display: inline-block;
+	}
+	.box{
+		margin-bottom: 10px;
+	}
+	.cart_add , .cart_delete{
+		margin-top: 30px;
+		width: 100px;
+		background: #ccc;
+		padding: 10px;
+		display: inline-block;
+		text-align: center;
+		box-sizing:border-box;
+		cursor: pointer;
+	}
+	.cart_delete{
+		display: none;
+	}
+</style>
+<div class="t_infor" id="gid">
+	<p class="infname" style="width:100%;">
+		总计数不得超过<span class="inNum">10</span>K
+	</p>
+	<div id="orderform">
+		<div class="copypages">
+			<div class="box">
+				<div class="infor_left">价格<span>*</span></div>
+				<div class="infor_right"> :
+					<input type="number" min="1" max="1000" step="1" name="price" class="write_input" /> <b>K</b>
+				</div>
+			</div>
+
+			<div class="box">
+				<div class="infor_left">数量<span>*</span></div>
+				<div class="infor_right"> :
+					<input type="number" min="1" max="1000" step="1" name="quantity" class="write_input" />
+				</div>
+			</div>
+			<div class="box">
+				小计
+				<input type="number" name="singleTotal" class="singleTotal" readonly="readonly" />
+			</div>
+			
+		</div>
+	</div>
+	<div class="playnamebox"></div>
+	<div class="clr"></div>
+	<div class="box">
+		总计
+		<input type="text" name="totalSum" readonly="readonly"/>
+	</div>
+	
+	<div class="cart-button">
+		<a class="cart_add" onclick="addPlayer('gid','numId')">增加</a>
+		<a class="cart_delete" onclick="deletePlayer('gid')">删除</a>
+	</div>
+</div>
+</body>
+
+<!-- <script>
+	$(function(){
+		var inputNumber = $(".write_input");
+		var price = $("[name='price']");
+		var quantity = $("[name='quantity']");
+		var singleTotal = $("[name='singleTotal']");
+		var totalSum = $("[name='totalSum']");
+
+		// $(this).val(inputNumber.replace(/[^1-9]{1,4}/g, ""));
+
+		
+	// alert(price.length)
+
+
+
+		inputNumber.keyup(function(){
+		// isNaN(parseInt(num))?obj.value='':obj.value=parseInt(num); 
+
+		
+			if(price.val().length == 0 || quantity.val().length == 0){
+				singleTotal.val("0");
+				totalSum.val("0");
+			}else{
+				singleTotal.val(parseInt(price.val()) * parseInt(quantity.val()));
+
+				totalSum.val(singleTotal.val());
+			// console.log(singleTotal.val());
+			}
+
+		})
+
+		
+	})
+
+
+	// 增加按钮
+	function addPlayer(gid,numId){
+		var playNamebox = $('#gid').find('.playnamebox');
+	    var inputCopy = $('#gid').find('.copypages:last');
+		var price = inputCopy.find("input[name='price']").val();
+		var quantity = inputCopy.find("input[name='quantity']").val(); 
+
+		
+		// var singleTotal= $("name='singleTotal'");
+		inputCopy.find("input[name='singleTotal']").each(function() {
+			
+	        var singleTotal = 0;            	  
+	        singleTotal = parseInt(price) * parseInt(quantity);
+	        $(this).val(singleTotal);
+	    }); 
+	    // inputCopy.append(inputCopy.prop("outerHTML"));
+
+		
+
+	 // alert(quantity)   
+		
+	}
+
+
+
+
+</script> -->
+
+<script>
+	
+</script>
+</html>

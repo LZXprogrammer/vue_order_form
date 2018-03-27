@@ -1,0 +1,97 @@
+<div id="todo-list-example">
+
+        
+    <ul id="orderform">
+        <li
+            is="todo-item"
+            v-for="(todo, index) in todos"
+            v-bind:key="todo.id"
+            v-bind:price="todo.price"
+            v-bind:quantity="todo.quantity" 
+        >
+        </li>
+    </ul>
+    
+    <div id="amout">
+        总计
+    </div>
+    <br>
+
+    <div id="example-2">
+        <button v-on:click="addInput">addInput</button>
+    </div>
+
+</div>
+<script src="vue.js"></script>
+<script>
+Vue.component('todo-item', {
+    template: '\
+        <li>\
+        <div id="formpage">\
+            <div class="box">\
+                <div class="infor_left">价格<span>*</span></div>\
+                <div class="infor_right"> :\
+                    <input v-model="price" name="price" class="write_input" /> <b>K</b>\
+                </div>\
+            </div>\
+            <div class="box">\
+                    <div class="infor_left">数量<span>*</span></div>\
+                <div class="infor_right"> :\
+                        <input v-model="quantity" name="quantity" class="write_input" />\
+                    </div>\
+            </div>\
+            <div class="box">\
+                    小计\
+                    <span>{{ singletotal }}</span>\
+                </div>\
+            </div>\
+        </li>\
+        ',
+    props: ['price', 'quantity'],
+    
+    computed: {
+        singletotal: function () {
+
+            return parseInt(this.price) * parseInt(this.quantity);
+        }
+    }
+})
+
+new Vue({
+  el: '#todo-list-example',
+  data: {
+    todos: [
+        {
+            id: 1,
+            price: 1,
+            quantity: 2
+        },
+    ],
+    nextTodoId: 2
+  },
+  // 在 `methods` 对象中定义方法
+  methods: {
+    addInput: function (event) {
+        this.todos.push({
+            id: this.nextTodoId++,
+            price: 0,
+            quantity: 0
+        })
+    }
+  }
+  ,
+  computed: {
+    // 计算属性的 getter
+    singletotal: function () {
+        var amount1 = 0;
+        var todos = this.todos;
+        for (key in todos) {
+            amount1 = parseInt(todos[key].price) * parseInt(todos[key].quantity);
+        }
+
+      return amount1;
+    }
+  }
+})
+
+</script>

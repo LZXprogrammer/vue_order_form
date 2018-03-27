@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <table id="tb">
+            <tr>
+                <th>单价</th>
+                <th>数量</th>
+                <th>小计</th>
+            </tr>
+            <tr>
+                <td><input type="text" value="2" class="input" /></td>
+                <td><input type="text" value="3" class="input" /></td>
+                <td><input type="text" class="singleTotal" readonly/></td>
+            </tr>
+            <tr>
+                <td><input type="text" value="6" class="input" /></td>
+                <td><input type="text" value="2" class="input" /></td>
+                <td><input type="text" class="singleTotal" readonly/></td>
+            </tr>
+            <tr>
+                <td><input type="text" value="2" class="input" /></td>
+                <td><input type="text" value="9" class="input" /></td>
+                <td><input type="text" class="singleTotal" readonly/></td>
+            </tr>
+            <tr>
+                <td><input type="text" value="2" class="input" /></td>
+                <td><input type="text" value="10" class="input" /></td>
+                <td><input type="text" class="singleTotal" readonly/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>总计：</td>
+                <td><input type="text" id="total" readonly /></td>
+            </tr>
+        </table>
+    </body>
+
+    <script>
+        $(document).ready(function(){
+            function updateSum() {
+                var totalSum = 0;
+                $("td input.singleTotal").each(function() {
+                    var p = $(this).parent().parent();
+                    var sum = 0;
+                    sum = parseInt(p.find("input:eq(0)").val()) * parseInt(p.find("input:eq(1)").val());
+                    $(this).val(sum);
+                    totalSum += sum;
+                });
+                $("td input#total").val(totalSum);
+            }
+            updateSum();
+            $("td input.input").bind("change keyup", function() {
+                updateSum();
+            });
+        });
+    </script>
+</html> 
